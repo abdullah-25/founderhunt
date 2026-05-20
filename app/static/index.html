@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FounderHunt — founding-engineer roles</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div class="brand">
+        <span class="brand-mark">F</span>
+        <span class="brand-text">
+          <span class="brand-name">FounderHunt</span>
+          <span class="brand-tag">Founding-engineer roles at startups, by funding stage</span>
+        </span>
+      </div>
+      <div id="quota" class="quota-pill">Daily quota &middot; &hellip;</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card search-card">
+      <form id="search-form">
+        <div class="form-grid">
+          <div class="field field-grow">
+            <label for="query">Role you're hunting</label>
+            <input id="query" name="query" type="text" required
+                   autocomplete="off" placeholder="founding software engineer" />
+          </div>
+          <div class="field">
+            <label for="location">Location <span class="hint">optional</span></label>
+            <input id="location" name="location" type="text"
+                   autocomplete="off" placeholder="Toronto &middot; Remote &middot; SF" />
+          </div>
+        </div>
+
+        <div class="control-group">
+          <span class="group-label">Funding stage</span>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="stages" value="pre_seed" checked /><span>Pre-seed</span></label>
+            <label class="chip"><input type="checkbox" name="stages" value="seed" checked /><span>Seed</span></label>
+            <label class="chip"><input type="checkbox" name="stages" value="series_a" checked /><span>Series A</span></label>
+            <label class="chip"><input type="checkbox" name="stages" value="series_b" /><span>Series B</span></label>
+            <label class="chip"><input type="checkbox" name="stages" value="series_c_plus" /><span>Series C+</span></label>
+            <label class="chip"><input type="checkbox" name="stages" value="unknown" /><span>Unknown</span></label>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <span class="group-label">Sources</span>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="sources" value="google" checked /><span>Google</span></label>
+            <label class="chip"><input type="checkbox" name="sources" value="yc" checked /><span>Y Combinator</span></label>
+          </div>
+        </div>
+
+        <div id="yc-filters" class="control-group">
+          <span class="group-label">Y Combinator filters</span>
+          <div class="yc-grid">
+            <label class="field field-sm">Role
+              <select name="yc_role">
+                <option value="engineering" selected>Engineering</option>
+                <option value="design">Design</option>
+                <option value="product">Product</option>
+                <option value="sales">Sales</option>
+              </select>
+            </label>
+            <label class="field field-sm">Commitment
+              <select name="yc_commitment">
+                <option value="fulltime" selected>Full-time</option>
+                <option value="contract">Contract</option>
+                <option value="intern">Intern</option>
+              </select>
+            </label>
+            <label class="chip chip-standalone"><input type="checkbox" name="yc_remote" /><span>Remote only</span></label>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button id="submit-btn" type="submit" class="btn btn-primary">Start the hunt</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="status-panel" class="hidden">
+      <div id="status-banner" class="banner">&nbsp;</div>
+      <div id="sources-breakdown" class="breakdown"></div>
+    </section>
+
+    <section id="results-panel" class="card hidden">
+      <div class="results-head">
+        <h2 class="section-title">Results <span id="result-count" class="count">0</span></h2>
+        <button id="export-btn" type="button" class="btn btn-ghost">Export CSV</button>
+      </div>
+      <div class="table-wrap">
+        <table id="results-table">
+          <thead>
+            <tr>
+              <th>Role</th><th>Startup</th><th>Stage</th><th>Tech stack</th>
+              <th>Compensation</th><th>Summary</th><th>Source</th><th>Link</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p id="empty-results" class="hidden empty-note">No matching roles yet.</p>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
