@@ -9,6 +9,8 @@ When a source hits a sign-in wall or captcha, FounderHunt opens the browser
 visibly and gives you **60 seconds** to clear it by hand, then resumes — the
 **human-in-the-loop checkpoint protocol** (SPEC section 5).
 
+![FounderHunt UI](docs/ui-screenshot.png)
+
 ## Quick start
 
 ```bash
