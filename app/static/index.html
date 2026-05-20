@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FounderHunt</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h1>FounderHunt</h1>
+    <p class="tagline">Founding-engineer roles at startups, filtered by funding stage</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <form id="search-form">
+        <label for="query">Job search</label>
+        <input id="query" type="text" placeholder="founding software engineer" required>
+
+        <label for="location">Location</label>
+        <input id="location" type="text" placeholder="San Francisco, Remote, NYC… (optional)">
+
+        <fieldset>
+          <legend>Funding stages</legend>
+          <label class="inline-filter"><input type="checkbox" name="stage" value="pre_seed" checked> Pre-seed</label>
+          <label class="inline-filter"><input type="checkbox" name="stage" value="seed" checked> Seed</label>
+          <label class="inline-filter"><input type="checkbox" name="stage" value="series_a" checked> Series A</label>
+          <label class="inline-filter"><input type="checkbox" name="stage" value="series_b"> Series B</label>
+          <label class="inline-filter"><input type="checkbox" name="stage" value="series_c_plus"> Series C+</label>
+          <label class="inline-filter"><input type="checkbox" name="stage" value="unknown"> Unknown</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Sources</legend>
+          <label class="inline-filter"><input type="checkbox" name="source" value="google" checked> Google</label>
+          <label class="inline-filter"><input type="checkbox" name="source" value="yc" checked id="yc-source"> Y Combinator</label>
+        </fieldset>
+
+        <fieldset id="yc-filters">
+          <legend>Y Combinator filters</legend>
+          <label for="yc-role">Role</label>
+          <select id="yc-role" name="yc_role">
+            <option value="engineering" selected>Engineering</option>
+            <option value="design">Design</option>
+            <option value="product">Product</option>
+            <option value="sales">Sales</option>
+            <option value="marketing">Marketing</option>
+            <option value="operations">Operations</option>
+          </select>
+          <label for="yc-commitment">Commitment</label>
+          <select id="yc-commitment" name="yc_commitment">
+            <option value="fulltime" selected>Full-time</option>
+            <option value="parttime">Part-time</option>
+            <option value="intern">Intern</option>
+            <option value="cofounder">Co-founder</option>
+          </select>
+          <label for="yc-remote">Remote</label>
+          <select id="yc-remote" name="yc_remote">
+            <option value="any" selected>Any</option>
+            <option value="remote">Remote only</option>
+            <option value="onsite">On-site only</option>
+          </select>
+          <p class="hint">YC uses the job query in the sidebar search. Funding stages map to YC “Company stage” filters.</p>
+        </fieldset>
+
+        <button type="submit" id="search-btn">Search</button>
+      </form>
+
+      <div class="meta">
+        <div id="quota" class="quota">Quota: loading…</div>
+        <div id="status" class="status status-idle">Ready</div>
+      </div>
+
+      <div id="checkpoint-banner" class="checkpoint-banner hidden"></div>
+      <div id="source-breakdown" class="source-breakdown hidden"></div>
+    </section>
+
+    <section class="panel">
+      <div class="results-header">
+        <h2>Results</h2>
+        <button id="export-btn" type="button" disabled>Export as CSV</button>
+      </div>
+      <div class="table-wrap">
+        <table id="results-table">
+          <thead>
+            <tr>
+              <th>Job Title</th>
+              <th>Startup</th>
+              <th>Stage</th>
+              <th>Tech Stack</th>
+              <th>Compensation</th>
+              <th>Summary</th>
+              <th>Source</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
